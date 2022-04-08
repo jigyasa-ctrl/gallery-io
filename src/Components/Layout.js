@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Context } from "../Context/Context"
 import axios from 'axios'
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Layout() {
     const { searchText, setDataToContext, inputText, searchResult, setDataToContextArray, currentIndex } = useContext(Context);
@@ -30,7 +30,7 @@ function Layout() {
     return (
         <div className="layout">
             <h1>Gallery.io</h1>
-            <h3 >Collection of Images. Search for you favourite collection.</h3>
+            <h3>Looking for Gallery Images? Search for your favourite collection.</h3>
             <div className="search">
                 <input type="text" onChange={(e) => setDataToContext("inputText", e.target.value)} />
                 <button type="submit" onClick={() => { setDataToContext("searchText", inputText); setDataToContext("searchResult", []) }}>Search</button>
