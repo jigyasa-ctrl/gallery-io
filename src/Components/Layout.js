@@ -7,16 +7,14 @@ import { Link } from "react-router-dom";
 function Layout() {
     const { searchText, setDataToContext, inputText, searchResult, setDataToContextArray, currentIndex } = useContext(Context);
     function submitSearch() {
-        setDataToContext("searchText", inputText);
         if (inputText !== searchText && inputText !== "") {
+            setDataToContext("searchText", inputText);
             setDataToContext("searchResult", [])
         }
 
     }
     useEffect(() => {
-        if (inputText !== "") {
-            setDataToContext("searchResult", [])
-        }
+        setDataToContext("searchResult", [])
         axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=d7b13d486b797794c2bf863312c9d85f&per_page=10&format=json&nojsoncallback=1&text=${searchText}`)
 
             .then(res => {
