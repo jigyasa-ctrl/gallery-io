@@ -15,7 +15,6 @@ class ContextProvider extends Component {
     }
 
     setDataToContext = (key, value) => {
-        console.log(key, value)
         this.setState({
             [key]: value
         });

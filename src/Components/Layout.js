@@ -8,18 +8,20 @@ function Layout() {
     const { searchText, setDataToContext, inputText, searchResult, setDataToContextArray, currentIndex } = useContext(Context);
     function submitSearch() {
         setDataToContext("searchText", inputText);
-        if (inputText !== searchText) {
+        if (inputText !== searchText && inputText !== "") {
             setDataToContext("searchResult", [])
         }
 
     }
     useEffect(() => {
-        setDataToContext("searchResult", [])
+        if (inputText !== "") {
+            setDataToContext("searchResult", [])
+        }
         axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=d7b13d486b797794c2bf863312c9d85f&per_page=10&format=json&nojsoncallback=1&text=${searchText}`)
 
             .then(res => {
 
-                res.data.photos.photo.map((result) => {
+                res.data.photos && res.data.photos.photo.map((result) => {
                     let photoDetails = {}
                     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=d7b13d486b797794c2bf863312c9d85f&photo_id=${result.id}&per_page=20&format=json&nojsoncallback=1`)
                         .then((res) => {
@@ -54,10 +56,10 @@ function Layout() {
 
                 ) :
                     <div id="container">
-                        <div id="square" class="shimmer image"></div>
-                        <div id="square" class="shimmer image"></div>
-                        <div id="square" class="shimmer image"></div>
-                        <div id="square" class="shimmer image"></div>
+                        <div id="square" className="shimmer image"></div>
+                        <div id="square" className="shimmer image"></div>
+                        <div id="square" className="shimmer image"></div>
+                        <div id="square" className="shimmer image"></div>
 
                     </div>
                 }
