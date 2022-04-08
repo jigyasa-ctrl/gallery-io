@@ -1,6 +1,6 @@
 # Flicker Gallery App
 
-A GAllery Search Application which provides a search options for your images.
+A Gallery Search Application which provides a search options for your images.
 
 demo at - https://gallery-io.netlify.app/
 
